@@ -5,3 +5,7 @@ XHTextField
 
 
 English: micro letter like avatars selection, system information App gesture keypad, and custom style 9 kinds of input, such as input Email and check whether it is right, input the password check whether correct, input automatically help you choose birthday constellation, customize the textField leftView ICONS, and other functions, note: there are input error identification tips!
+
+
+
+![image](https://github.com/JackTeam/XHTextFiled/raw/master/Screenshots/Textfield.gif)
