@@ -8,4 +8,4 @@ English: micro letter like avatars selection, system information App gesture key
 
 
 
-![image](https://github.com/JackTeam/XHTextField/raw/master/Screenshots/Textfield.gif)
+![image](https://github.com/JackTeam/XHTextField/raw/master/Screenshots/TextField.gif)
