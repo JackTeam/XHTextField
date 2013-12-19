@@ -17,7 +17,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    [self.scrollView setContentSize:CGSizeMake(0, CGRectGetHeight(self.scrollView.frame) + 80)];
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)]) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+    
+    [self.scrollView setContentSize:CGSizeMake(0, CGRectGetHeight(self.scrollView.frame) + 150)];
     
     [_avatarTextField setFieldType:kXHAvatarField];
     

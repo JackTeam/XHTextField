@@ -17,6 +17,7 @@
 @required
 @end
 
+
 typedef NS_ENUM(NSInteger, XHFieldType) {
     kXHOtherField = 0,
     kXHAvatarField,
@@ -30,20 +31,35 @@ typedef NS_ENUM(NSInteger, XHFieldType) {
 
 @interface XHTextField : UITextField
 
-@property (nonatomic) BOOL required;
-@property (nonatomic, strong) UIToolbar *inputToolbar;
-@property (nonatomic, weak) UIScrollView *scrollView;
+@property (nonatomic) BOOL required; // default is NO
 @property (nonatomic, assign) XHFieldType fieldType;
 @property (nonatomic, assign) id <XHTextFieldDelegate> textFieldDelegate;
 
-@property (nonatomic, assign) CGPoint rectInsetPoint;
+@property (nonatomic, assign) NSInteger maxTextLength; // default is  140
+
+@property (nonatomic, assign) CGPoint rectInsetPoint; // default is (10, 5)
+/**
+ *  set textFields for nil
+ */
 - (void)_resetAllTextFields;
 
+/**
+ *  check self requred condition
+ *
+ *  @return pass requred for YES
+ */
 - (BOOL)validate;
 
 - (XHTextField *)textFieldAtIndex:(int)index;
 - (int)numberOfTextFields;
 
+/**
+ *  get Constellation with date
+ *
+ *  @param date Tranform Constellation form date
+ *
+ *  @return Constellation string
+ */
 + (NSString *)getConstellation:(NSDate *)date;
 
 @end

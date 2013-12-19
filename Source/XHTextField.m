@@ -27,6 +27,9 @@
 @property (nonatomic, setter = setToolbarCommand:) BOOL isToolBarCommand;
 @property (nonatomic, setter = setDoneCommand:) BOOL isDoneCommand;
 
+@property (nonatomic, strong) UIToolbar *inputToolbar;
+@property (nonatomic, weak) UIScrollView *scrollView;
+
 @property (nonatomic, strong) UIBarButtonItem *previousBarButton;
 @property (nonatomic, strong) UIBarButtonItem *nextBarButton;
 
@@ -337,12 +340,11 @@
     // 默认设置
     if ([self respondsToSelector:@selector(setTintColor:)]) {
         [self setTintColor:[UIColor blackColor]];
-    } else {
-        [self setBackgroundColor:[UIColor blackColor]];
     }
     [self setBorderStyle:UITextBorderStyleNone];
     [self setFont: [UIFont systemFontOfSize:17]];
     self.rectInsetPoint = CGPointMake(10, 5);
+    self.maxTextLength = 7;
     self.inputAccessoryView = [[UIView alloc] init];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidBeginEditing:) name:UITextFieldTextDidBeginEditingNotification object:self];
@@ -517,7 +519,7 @@
 {
     self.backgroundColor = [UIColor colorWithRed:255 green:0 blue:0 alpha:0.5];
     
-    if (self.required && [self.text isEqualToString:@""]){
+    if (self.required && ![self.text length]) {
         return NO;
     }
     else if (self.fieldType == kXHEmailField) {
@@ -535,6 +537,8 @@
         if (![emailTest evaluateWithObject:self.text]){
             return NO;
         }
+    } else if ([self.text length] > self.maxTextLength) {
+        return NO;
     }
     
     [self setBackgroundColor:[UIColor whiteColor]];
