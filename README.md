@@ -11,9 +11,9 @@ English: micro letter like avatars selection, system information App gesture key
 ##安装
 ##Installation
 
-中文:      [CocosPods](http://cocosPods.org)安装XHMediaRecorder的推荐方法,只是在Podfile添加以下行:
+中文:      [CocosPods](http://cocosPods.org)安装XHTextField的推荐方法,只是在Podfile添加以下行:
 
-english:   [CocosPods](http://cocosPods.org) is the recommended methods of installation XHMediaRecorder, just add the following line to `Profile`:
+english:   [CocosPods](http://cocosPods.org) is the recommended methods of installation XHTextField, just add the following line to `Profile`:
 
 ## Profile
 
