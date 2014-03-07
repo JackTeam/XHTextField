@@ -9,9 +9,21 @@
 #import "ViewController.h"
 
 @interface ViewController ()
+@property (nonatomic, strong) NSMutableArray *textFields;
 @end
 
 @implementation ViewController
+
+#pragma mark - Propertys
+
+- (NSMutableArray *)textFields {
+    if (!_textFields) {
+        _textFields = [[NSMutableArray alloc] initWithCapacity:1];
+    }
+    return _textFields;
+}
+
+#pragma mark - Life cycle
 
 - (void)viewDidLoad
 {
@@ -22,31 +34,45 @@
     }
     
     [self.scrollView setContentSize:CGSizeMake(0, CGRectGetHeight(self.scrollView.frame) + 150)];
+    __weak typeof(self) weakSelf = self;
+    [self.scrollView setDidDisMissCompledBlock:^{
+        [weakSelf.textFields enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            [obj resignFirstResponder];
+        }];
+    }];
+    [_scrollView setDismissivePanGestureRecognizer:_scrollView.panGestureRecognizer];
     
     [_avatarTextField setFieldType:kXHAvatarField];
     
     [_emailTextField setRequired:YES];
     [_emailTextField setFieldType:kXHEmailField];
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] init];
-    [_scrollView setDismissivePanGestureRecognizer:pan];
-    [self.view addGestureRecognizer:pan];
+    [self.textFields addObject:_emailTextField];
     
     [_passwordTextField setRequired:YES];
     [_passwordTextField setFieldType:kXHPasswordField];
+    [self.textFields addObject:_passwordTextField];
     
     [_firstNameTextField setFieldType:kXHUserNameField];
+    [self.textFields addObject:_firstNameTextField];
     
     [_lastNameTextField setFieldType:kXHUserNameField];
+    [self.textFields addObject:_lastNameTextField];
     
     [_genderTextField setFieldType:kXHGenderField];
+    [self.textFields addObject:_genderTextField];
     
     [_ageTextField setFieldType:kXHDateField];
+    [self.textFields addObject:_ageTextField];
     
     [_constellationTextField setEnabled:NO];
     [_constellationTextField setFieldType:kXHConstellation];
+    [self.textFields addObject:_constellationTextField];
     
     _phoneTextField.keyboardType = UIKeyboardTypePhonePad;
+    [self.textFields addObject:_phoneTextField];
+    
     _zipTextField.keyboardType = UIKeyboardTypePhonePad;
+    [self.textFields addObject:_zipTextField];
 }
 
 - (void)didReceiveMemoryWarning

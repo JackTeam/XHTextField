@@ -174,6 +174,9 @@
                                                                           self.keyboardView.frame.size.width,
                                                                           self.keyboardView.frame.size.height);
                                      [self resignFirstResponder];
+                                     if (self.didDisMissCompledBlock) {
+                                         self.didDisMissCompledBlock();
+                                     }
                                  }];
             }
             else { // gesture ended with no flick or a flick upwards, snap keyboard back to original position
@@ -191,6 +194,9 @@
                                                                           self.keyboardView.frame.size.height);
                                  }
                                  completion:^(BOOL finished){
+                                     if (self.didDisMissCompledBlock) {
+                                         self.didDisMissCompledBlock();
+                                     }
                                  }];
             }
             break;

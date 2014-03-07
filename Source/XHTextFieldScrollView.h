@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+
+typedef void(^DidDisMissCompledBlock)(void);
+
 @class XHTextField;
 
 @protocol XHTextFieldScrollViewDelegate <NSObject>
@@ -23,5 +26,6 @@
 
 @property (nonatomic, assign) id <XHTextFieldScrollViewDelegate> textFieldScrollViewDelegate;
 @property (nonatomic, strong) UIPanGestureRecognizer *dismissivePanGestureRecognizer;
+@property (nonatomic, copy) DidDisMissCompledBlock didDisMissCompledBlock;
 
 @end
